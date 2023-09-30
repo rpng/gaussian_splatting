@@ -6,7 +6,7 @@ The repository contains submodules, thus please check it out with
 
 ```shell
 # HTTPS
-git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive
+git clone https://github.com/rpng/gaussian_splatting.git --recursive
 ```
 
 ### Running
