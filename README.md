@@ -1,5 +1,6 @@
 # 3D Gaussian Splatting for Real-Time Radiance Field Rendering
 
+# Installations
 ## Cloning the Repository
 
 The repository contains submodules, thus please check it out with 
@@ -8,7 +9,19 @@ The repository contains submodules, thus please check it out with
 # HTTPS
 git clone https://github.com/rpng/gaussian_splatting.git --recursive
 ```
-
+```shell
+# Dependencies
+sudo apt install -y libglew-dev libassimp-dev libboost-all-dev libgtk-3-dev libopencv-dev libglfw3-dev libavdevice-dev libavcodec-dev libeigen3-dev libxxf86vm-dev libembree-dev
+# Project setup
+cd SIBR_viewers
+git checkout fossa_compatibility
+cmake -Bbuild . -DCMAKE_BUILD_TYPE=Release # add -G Ninja to build faster
+cmake --build build -j24 --target install
+```
+```shell
+pip3 install submodules/diff-gaussian-rasterization
+pip3 install submodules/simple-knn
+```
 ### Running
 
 To run the optimizer, simply use
