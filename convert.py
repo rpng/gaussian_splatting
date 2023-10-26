@@ -25,7 +25,7 @@ parser.add_argument("--resize", action="store_true")
 parser.add_argument("--magick_executable", default="", type=str)
 args = parser.parse_args()
 colmap_command = '"{}"'.format(args.colmap_executable) if len(args.colmap_executable) > 0 else "colmap"
-magick_command = '"{}"'.format(args.magick_executable) if len(args.magick_executable) > 0 else "magick"
+magick_command = '"{}"'.format(args.magick_executable) if len(args.magick_executable) > 0 else "convert"
 use_gpu = 1 if not args.no_gpu else 0
 
 if not args.skip_matching:
