@@ -258,19 +258,25 @@ def readCamerasfromJsonFile(path, transformsfile):
 
 def readInstantNGPInfo(path):
     print("Reading transforms.json file")
-    train_cam_infos = readCamerasfromJsonFile(path, "transforms_colmap.json")
+    train_cam_infos = readCamerasfromJsonFile(path, "transform_vicon.json")
 
     nerf_normalization = getNerfppNorm(train_cam_infos)
 
     #generate random points
-    # num_pts = 10_000
-    # print(f"Generating random point cloud ({num_pts})...")
-    # xyz = np.random.random((num_pts, 3)) * 2.6 - 1.3
-    # shs = np.random.random((num_pts, 3)) / 255.0
-    # pcd = BasicPointCloud(points=xyz, colors=SH2RGB(shs), normals=np.zeros((num_pts, 3)))
-    # ply_path = os.path.join(path, "points3d_test.ply")
-    # storePly(ply_path, xyz, SH2RGB(shs) * 255)
-    ply_path = "/home/saimouli/Documents/ov_nerf_slam/gaussian_splatting/data/euroc_mav_sparse/sparse/0/points3D.ply"
+    num_pts = 165
+    print(f"Generating random point cloud ({num_pts})...")
+    xyz = np.random.random((num_pts, 3)) * 2.6 - 1.3
+    shs = np.random.random((num_pts, 3)) / 255.0
+    pcd = BasicPointCloud(points=xyz, colors=SH2RGB(shs), normals=np.zeros((num_pts, 3)))
+    ply_path = os.path.join(path, "points3d_test.ply")
+    storePly(ply_path, xyz, SH2RGB(shs) * 255)
+
+    #ply_path = "/home/saimouli/Documents/ov_nerf_slam/gaussian_splatting/data/euroc_mav_sparse/sparse/0/points3D.ply"
+
+    # bin_path = "/home/saimouli/Documents/ov_nerf_slam/gaussian_splatting/data/V1_01_easy/colmap_undistort/0/sparse/points3D.bin"
+    # ply_path = "/home/saimouli/Documents/ov_nerf_slam/gaussian_splatting/data/V1_01_easy/colmap_undistort/0/sparse/points3D.ply"
+    # xyz, rgb, _ = read_points3D_binary(bin_path)
+    # storePly(ply_path, xyz, rgb)
     try:
         pcd = fetchPly(ply_path)
     except:
